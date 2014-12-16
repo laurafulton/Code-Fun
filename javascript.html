@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<style>
+  #title {
+    text-align: center;
+    font-size: 20pt;
+  }
+.red {
+	background: pink;
+}
+
+.blue {
+	color: blue;
+}
+
+.pink {
+	color: pink;
+}
+
+#button1 {
+    position: absolute;
+    top: 150px;
+    left: 100px;
+  }
+  
+#button2 {
+      position: absolute;
+      top: 150px;
+      left: 150px;
+    }
+	
+#button3 {
+	    position: absolute;
+	    top: 150px;
+	    left: 200px;
+	  }
+}
+</style>
+
+	
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+
+<script>
+	var hello = function() {
+		console.log("Hello");
+	};
+	
+	var MakeParagraphsRed= function() {
+		$("p").toggleClass("red");
+	};
+	
+	
+	var MakeTextPink = function() {
+		$("em").toggleClass("pink");
+	};
+	
+	
+	var ParagraphClick = function() {
+	  console.log("You clicked!");
+	};
+	
+	
+	var message= "This is my mssage!" + 42;
+	console.log(message);
+	
+	var hover = function () {
+		$("#button2").show();
+		Hide1();
+	}
+	
+	var justkidding = function () {
+		$("#button3").show();
+		Hide2();
+	}
+	
+	var back = function () {
+		$("#button2").show();
+		Hide3();
+	}
+	
+	var one = function () {
+		$("#button1").show();
+		Hide2();
+	}
+	
+	
+	var Hide1 = function () {
+		$("#button1").hide();
+	}
+	
+	var Hide2 = function () {
+		$("#button2").hide();
+	}
+	
+	var Hide3 = function () {
+		$("#button3").hide();
+	}
+	
+	var Main = function() {
+	    $("#redify").click(MakeParagraphsRed);
+		$("#pink").click(MakeTextPink);
+		$("p").click(ParagraphClick);
+		$("#button2").hide();
+		$("#button3").hide();
+		$("#button1").hover(hover); 
+		$("#button2").hover(justkidding);
+		$("#button3").hover(back);
+		$("#button2").hover(one);
+		
+   
+  }; $(document).ready(Main);
+</script>
+
+</head>
+<body>
+	
+
+<div id='title'>The title of my page</div>
+
+	<button id='redify'>Make pretty</button>
+	<button id= 'pink'> Pink italics </button>
+	<button id= 'button1'> 1 </button>
+	<button id= 'button2'> 2 </button>
+	<button id= 'button3'> 3 </button>
+
+
+<p>This is the very first paragraph.  There are many paragraphs, but this one is mine.</p>
+
+<p>This is the second paragraph.  Just because it's not <em>numerically</em> first does not make it a lesser paragraph.  We can't <em>all</em> come first.</p>
+
+</body>
+</html>
