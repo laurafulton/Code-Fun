@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Loogle</title>
+	<link href="style.css" rel="stylesheet">
+	</head>
+<head>
+
+<style>
+
+  #title {
+    text-align: center;
+    font-size: 20pt;
+	color: #3369e8;
+	font-family: Helvetica;
+  }
+  #searchbox{
+	  font-family: Helvetica;
+	  width: 200px;
+	  : center;
+  }
+}
+	
+</style>
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+
+<script>
+
+var photos = [
+ {"id":"9136491524",
+                 "owner":"58624514@N07",
+                 "secret":"0aeb34a48d",
+                 "server":"7407",
+                 "farm":8,
+                 "title":"sixteen: archie"},
+ {"id":"9143325327",
+                 "owner":"8519341@N08",
+                 "secret":"c557235572",
+                 "server":"2858",
+                 "farm":3,
+                 "title":"Geez mom, stop taking my picture! #cat #cats #kitty #kitties #kitten #kittens #love #animals #animal #pet #pets #black #instacat #instakitty #instagram #like #likes #follow #vintage #life"}
+ ];
+
+var zoo= [{
+	"name": "Joe",
+	"type": "camel",
+	"legs": 4,
+	"features": "hump"
+},
+
+{
+	"name": "Smokey",
+	"type": "bear",
+	"legs": 4,
+	"features": "scared of forest fires"
+}
+];
+
+var GetFlickrUrl = function(photo) {
+	return "https://farm" + photo.farm + ".staticflickr.com/" + photo.server + "/" + photo.id +"_" + 	photo.secret + ".jpg";
+};
+
+var AddPhoto = function(photo){
+	$("#photos").append("<li><img src="+ GetFlickrUrl(photo) + "></li>");
+};
+
+var AddAllPhotos = function(photos) {
+	for (i in photos) {
+		AddPhoto(photos[i]);
+	}
+};
+
+var DisplayPhotos = function(flickrPhotos) {
+	AddAllPhotos(flickrPhotos.photos.photo);
+};
+
+var LoadPhoto = function(){
+  var flickr = "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=764a4955d5ea19e5e7ca0b4a8f9603a7&format=json&jsoncallback=?";
+  var params = {"tags": $("#searchbox").val()};
+  $.getJSON(flickr, params, DisplayPhotos);
+  
+};
+
+var ClearPhoto = function(){
+	$("#photos").empty();
+};
+
+  var Main = function() {
+	  $("#loadbutton").click(LoadPhoto);
+	  $("#clearbutton").click(ClearPhoto);
+  }  
+  
+  $(document).ready(Main);
+</script>
+
+</head>
+<body>
+	
+	<div id="title">Welcome to LOOGLE <em> : Laura's Google-styled Picture Search Engine </em></div>
+<br>
+
+<div id= "box">
+
+		 <input id= 'searchbox'> <button id= loadbutton>Load</button> 
+	 <button id= clearbutton>Clear</button> <br></br>
+        <ul id= "photos"></ul>
+</div>
+
+</body>
+</html>
